@@ -1,0 +1,10 @@
+flask
+flask_login
+wt_forms
+email_validator
+flask_bcrypt
+flask_sqlalchemy
+uuid
+jsonpickle
+pycryptodome
+flask_wtf

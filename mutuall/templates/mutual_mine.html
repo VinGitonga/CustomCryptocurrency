@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<h1>Mine Donations</h1>
+	<h4>Mutuall Aid Transactions Total:</h4>
+	<table class="table">
+	  <thead class="thead-dark">
+	    <th scope="col">#</th>
+		      <th scope="col">Amount</th>
+		      <th scope="col">Valid?</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {% for tx in blockchain.mutualTransactions %}
+	    <tr>
+	      <th scope="row">{{loop.index0}}</th>
+	      <td>
+	        {{tx.amount}}
+	      </td>
+	      <td style="max-width: 40px;">
+	      	{% if tx.isValidTransaction() %}
+	        	<span>✓</span>
+	        {%else%}
+	        	<span>✗</span>
+	        {%endif%}
+	      </td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+	{% if current_user.is_authenticated %}
+		<div class=""> 
+			<a href="{{url_for('mineMutualAId')}}"><button type="button" class="btn btn-primary">Mine A New Block!</button></a>
+		</div>
+	{% else %}
+		<div class=""> 
+			<a href="{{url_for('login')}}"><button type="button" class="btn btn-info">Sign in to mine blocks!</button></a>
+		</div>
+	{% endif %}
+{% endblock content %}
